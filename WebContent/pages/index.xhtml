@@ -1,0 +1,25 @@
+<ui:composition template="/templates/layout_default.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<ui:define name="content">
+		<div class="row-fluid">
+			<div class="span4 offset4 whiteBox m20 p20">
+				<h:form id="indexForm" styleClass="form-horizontal m0">
+					<div class="control-group">
+						<h:outputText
+							value="#{msg['label.header.famintos']}" />
+					</div>
+					
+					<div class="control-group" style="text-align:center;">
+						<p:button value="Votar" id="votar" outcome="/pages/stepOne?faces-redirect=true" styleClass="ui-priority-primary" />
+						<p:button value="Resultado" id="Resultado" outcome="/pages/result?faces-redirect=true" styleClass="ui-priority-primary" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

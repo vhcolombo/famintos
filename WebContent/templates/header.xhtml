@@ -1,0 +1,32 @@
+<ui:composition
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<h:form
+		id="formView"
+		styleClass="m0 p0">
+
+		<div class="navbar navbar-static-top ppg navbar-inverse">
+			<div class="navbar-inner">
+				<div
+					class="container"
+					style="width: auto; padding-top: 5px;">
+					
+					<p:steps id="steps" activeIndex="#{headerMB.stepIndex}">
+					    <p:menuitem value="Profissional"/>
+					    <p:menuitem value="Restaurante"/>
+					    <p:menuitem value="Resultado"/>
+					</p:steps>
+					
+					<p:remoteCommand name="setStepIndex" action="#{headerMB.setStepIndexByRemoteCommand}" update="steps" />
+					
+				</div>
+			</div>
+		</div>
+
+	</h:form>
+</ui:composition>
+

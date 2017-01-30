@@ -1,0 +1,39 @@
+<ui:composition 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<h:form id="formStepThree" styleClass="form-horizontal m0">
+		<p:panel header="#{msg['label.header.resultado']}" style="margin-bottom:10px;">
+			<h:panelGrid columns="2" cellpadding="5" style="font-size: 25px;" styleClass="ui-messages-info">
+				<p:outputLabel for="restauranteDia" value="#{msg['label.restaurante.dia']}: " />
+				<h:outputText id="restauranteDia" value="#{votoMB.restauranteDoDia}"></h:outputText>
+			</h:panelGrid>
+			<p:chart type="bar" model="#{votoMB.lineModel}" style="height:300px;"/>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:dataTable value="#{votoMB.votos}" var="voto">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.data']}"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{voto.data}"><f:convertDateTime pattern="dd-MM-yyyy" /></h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.profissional']}"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{voto.profissional.name}"></h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.restaurante']}"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{voto.restaurante.name}"></h:outputText>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

@@ -1,0 +1,33 @@
+<ui:composition
+	template="/templates/layout_steps.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<ui:define name="content">
+		<script type="text/javascript">
+		$(document).ready(function() {
+			setStepIndex([{name:'index', value:0}]);
+		});
+		</script>
+			
+		<h:form
+			id="formStepOne"
+			styleClass="form-horizontal m0">
+			<p:panel header="#{msg['label.header.profissional']}" style="margin-bottom:10px;">
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel for="profissional" value="#{msg['label.nome']}:" />
+					<p:inputText id="profissional" value="#{profissionalMB.profissional.name}" required="true" 
+									requiredMessage="#{msg['message.validator.nameRequired']}"/>			
+				</h:panelGrid>
+	
+				<p:separator />
+				<p:commandButton value="#{msg['btn.proximo']}" id="proximoOne" actionListener="#{profissionalMB.buttonActionListener}" action="#{profissionalMB.buttonAction}" styleClass="ui-priority-primary">
+					<f:setPropertyActionListener target="#{restauranteMB.profissional}" value="#{profissionalMB.profissional}" />
+				</p:commandButton>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,36 @@
+<ui:composition template="/templates/layout_steps.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<ui:define name="content">
+		<script type="text/javascript">
+			$(document).ready(function() {
+				setStepIndex([ {
+					name : 'index',
+					value : 1
+				} ]);
+			});
+		</script>
+		<h:form id="formStepTwo" styleClass="form-horizontal m0">
+			<p:panel header="#{msg['label.header.restaurante']}" style="margin-bottom:10px;">
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel for="restaurante" value="#{msg['label.restaurante']}: " />
+					<p:selectOneMenu id="restaurante" value="#{restauranteMB.restaurante}" style="width:150px" converter="entityConverter" required="true" requiredMessage="#{msg['message.validator.restauranteRequired']}">
+						<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{restauranteMB.restaurantes}" var="rest" itemValue="#{rest}" itemLabel="#{rest.name}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+	
+				<p:separator />
+				<p:commandButton value="#{msg['btn.voltar']}" id="voltaroOne" immediate="true" action="#{restauranteMB.buttonActionVoltar}" styleClass="ui-priority-primary" />
+				<p:commandButton value="#{msg['btn.proximo']}" id="proximoTwo" action="#{votoMB.buttonAction}" styleClass="ui-priority-primary">					
+					<f:setPropertyActionListener target="#{votoMB.voto.profissional}" value="#{restauranteMB.profissional}" />
+					<f:setPropertyActionListener target="#{votoMB.voto.restaurante}" value="#{restauranteMB.restaurante}" />
+				</p:commandButton>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
